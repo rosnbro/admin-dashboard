@@ -2,16 +2,47 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    --sidebar-color: deepskyblue;
-    --header-color: forestgreen;
-    --main-bg-color: lightgrey;
+    --sidebar-color: #047857;
+    --header-color: white;
+    --main-bg-color: #dcfce7;
     --card-bg-color: white;
-    --card-border-color: pink;
+    --card-border-color: #fb7185;
+    --shadow: 0 0 5px #047857
 }
 
 ul {
     list-style: none;
-    padding: 0;
+    padding: 0 0 2rem 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+li:hover, 
+button:hover, 
+img:hover {
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: white;
+    border: solid var(--sidebar-color);
+    color: black;
+}
+
+.title img,
+li img {
+    filter: invert(100%) sepia(4%) saturate(677%) hue-rotate(359deg) brightness(113%) contrast(100%);
+}
+
+.title img {
+    height: 2rem;
+    translate: 0 4px;
 }
 
 body {
@@ -26,9 +57,10 @@ body {
 }
 
 .sidebar {
-    height: 100%;
+    padding: 0.5rem 0 0 1rem;
     grid-area: sidebar;
     background-color: var(--sidebar-color);
+    color: white;
 }
 
 .header {
@@ -39,12 +71,92 @@ body {
     height: 200px;
     padding: 0 1.5rem;
     display: grid;
+    grid-template-columns: minmax(300px, 1fr);
     grid-template-areas:
     "search admin"
     "info buttons";
     align-items: center;
     justify-content: space-between;
     background-color: var(--header-color);
+    border-bottom: solid var(--sidebar-color);
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.admin {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+label img {
+    height: 30px;
+    padding-right: 20px;
+    translate: 0 3px;
+}
+
+#searchBar {
+    width: 90%;
+    height: 40px;
+    border-radius: 2rem;
+    border: solid var(--sidebar-color);
+    background-color: var(--main-bg-color);
+    font-size: 1.1rem;
+}
+
+.admin button {
+    border: none;
+    background-color: white;
+}
+
+#accountName {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.admin .accountIcon {
+    height: 40px;
+    padding-right: 0.5rem;
+}
+
+.info .accountIcon {
+    height: 75px;
+    padding-right: 0.5rem;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+#intro {
+    font-weight: bold;
+}
+
+#account {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.heroButton {
+    margin: 0.4rem;
+    background-color: var(--sidebar-color);
+    color: white;
+    width: 100px;
+    height: 40px;
+    border-radius: 2rem;
+    border-style: none;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .admin {
@@ -78,20 +190,44 @@ body {
 .projectsContainer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: auto;
+    grid-template-rows: 250px;
+    grid-auto-rows: 250px;
     gap: 10px;
     height: fit-content;
 }
 
 .project {
+    display: flex;
+    flex-direction: column;
     padding: 2rem;
     background-color: var(--card-bg-color);
+    border-left: solid 8px var(--card-border-color);
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
 }
 
 .projTitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     padding-bottom: 0.5rem;
+}
+
+.projText {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+}
+
+.projButtons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+}
+
+.projButtons img {
+    padding-left: 1rem;
 }
 
 .announcements {
@@ -101,18 +237,35 @@ body {
 .announceContainer {
     background-color: var(--card-bg-color);
     padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
 }
 
 .announcement {
     padding: 1rem;
     width: 200px;
+    height: 80px;
     overflow: hidden;
 }
 
+#center {
+    border-top: grey solid 2px;
+    border-bottom: grey solid 2px;
+}
+
 .announceTitle {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     padding-bottom: 0.5rem;
+}
+
+.announceText {
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 .trending {
@@ -121,8 +274,28 @@ body {
 
 .trendContainer {
     background-color: var(--card-bg-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: var(--shadow);
 }
 
 .trend {
-    padding: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.trendIcon {
+    height: 60px;
+    padding-right: 0.25rem;
+}
+
+.trendTag {
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding-bottom: 0.2rem;
+}
+
+.trendName {
+    font-size: 0.9rem;
 }
